@@ -47,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
                 saveData();
             }
         });
+
+        loadData();
+        updateData();
     }
 
 
@@ -54,10 +57,16 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(TEXT , displayText.getText().toString());
+
+        editor.apply();
     }
 
     public void loadData(){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        text = sharedPreferences.getString(TEXT, "");
 
+    }
+    public void updateData(){
+        displayText.setText(text);
     }
 }
